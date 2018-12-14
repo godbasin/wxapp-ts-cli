@@ -1,0 +1,59 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var program = require('commander');
+
+var options = {
+    cmd: '',
+    projectName: '',
+    mirror: 'default',
+    language: 'en'
+};
+
+program
+    .version(require('../package').version, '-v, --version')
+    .usage('<cmd> [project-name]')
+    .option('-m, --mirror <mirror>', 'Select mirror like: npm, cnpm, taobao', /^(npm|cnpm|taobao|nj|rednpm|skimdb|yarn)$/i)
+    .on('-h, --help', help);
+
+program
+    .command('init [projectName]')
+    .description('Initialize a new wxapp typescript project in the current folder')
+    .action(function (projectName, option) {
+        var cmd = 'init';
+        if (option.parent.mirror && typeof option.parent.mirror === "string") {
+            options.mirror = option.parent.mirror;
+        }
+        switchCommand(cmd, {
+            project: projectName,
+            mirror: options.mirror,
+            language: options.language
+        });
+    });
+
+program
+    .command('*')
+    .action(function () {
+        spawn('wxapp-ts-cli', ['-h'], {
+            stdio: 'inherit'
+        });
+    });
+
+program.parse(process.argv);
+
+function switchCommand(cmd, args) {
+    if (cmd) {
+        require('../lib/' + cmd)(args);
+    } else {
+        setTimeout(program.help, 0);
+    }
+}
+
+function help() {
+    console.log('  Commands:');
+    console.log();
+    console.log(`     ${chalk.green('init  [project-name]')}           Initialize a new wxapp ts project in the current folder `);
+    console.log();
+    console.log('  All commands can be run with -h (or --help) for more information.');
+}

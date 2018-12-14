@@ -1,0 +1,35 @@
+{
+  "name": "wxapp-ts-cli",
+  "version": "0.0.2",
+  "description": "A simple CLI for building wxapp typescript projects.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --fix lib/*.js bin/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/godbasin/wxapp-ts-cli.git"
+  },
+  "keywords": [
+    "wxapp",
+    "typescript"
+  ],
+  "author": "godbasin <wangbeishan@163.com> (https://github.com/godbasin)",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "commander": "^2.9.0",
+    "cross-spawn": "^5.0.1",
+    "empty-dir": "^0.2.1",
+    "fs-exists-sync": "^0.1.0",
+    "vinyl-fs": "^2.4.4",
+    "which": "^1.2.14"
+  },
+  "bugs": {
+    "url": "https://github.com/godbasin/wxapp-ts-cli/issues"
+  },
+  "homepage": "https://github.com/godbasin/wxapp-ts-cli#readme",
+  "bin": {
+    "wxapp-ts-cli": "./bin/index"
+  }
+}
