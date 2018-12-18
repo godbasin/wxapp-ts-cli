@@ -2,10 +2,8 @@
   "name": "demo",
   "version": "1.0.0",
   "scripts": {
-    "dev": "gulp",
-    "build": "gulp build",
-    "tsc": "./node_modules/typescript/bin/tsc",
-    "compile": "tsc"
+    "dev": "gulp --continue",
+    "build": "gulp build"
   },
   "devDependencies": {
     "autoprefixer": "^9.3.1",
